@@ -478,8 +478,8 @@ Subscription.hasMany(Invoice, { foreignKey: 'subscription_id' )
 Because Sequelize is doing a lot of magic, you have to call `Sequelize.sync` after setting the associations! Doing so will allow you the following:
 
 ```js
-Project.belongsToMany(Task)
-Task.belongsToMany(Project)
+Project.hasMany(Task)
+Task.belongsTo(Project)
  
 Project.create()...
 Task.create()...
@@ -615,7 +615,7 @@ Project.create({ /* */ }).then(project => {
 project.setUsers([user1, user2]).then(() => {
   return project.hasUsers([user1]);
 }).then(result => {
-  // result would be false
+  // result would be true
   return project.hasUsers([user1, user2]);
 }).then(result => {
   // result would be true
